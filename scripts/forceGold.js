@@ -1,16 +1,16 @@
 // ============================================================
-// Locket Remote Config Rewrite - ULTIMATE FIX
-// Endpoint: firebaseremoteconfig.googleapis.com
+// Locket Remote Config Rewrite
+// Bản gốc đầy đủ + Fix ảnh nametag + Tối ưu âm thanh nhẹ
 
-var ua = ($request.headers["User-Agent"] || $request.headers["user-agent"] || "").toLowerCase();
+var ua = $request.headers["User-Agent"] || $request.headers["user-agent"] || "";
 var obj = JSON.parse($response.body);
 
-if (ua.includes("locket")) {
+if (ua.includes("Locket")) {
     obj.Attention = "Chúc mừng bạn! Vui lòng không bán hoặc chia sẻ cho người khác!";
     obj.entries = obj.entries || {};
 
     // ============================================================
-    // 1. CẤU HÌNH GOLD, FEATURE GATES, PROFILE BADGE & PAYWALL
+    // 1. CẤU HÌNH GOLD, FEATURE GATES & PAYWALL
     // ============================================================
     Object.assign(obj.entries, {
         feature_gates: JSON.stringify({
@@ -34,8 +34,7 @@ if (ua.includes("locket")) {
             camera_theme: true,
             locket_views: true,
             remove_ads: true,
-            custom_widget_frames: true,
-            profile_badge: true
+            custom_widget_frames: true
         }),
         paywall_presentation_config: JSON.stringify({
             uid: "paywall_testflight",
@@ -64,28 +63,12 @@ if (ua.includes("locket")) {
             use_local_time_zone: true
         }),
         android_subscribe_gold_button_enabled: "false",
-        // Ép bật Profile Badge chuẩn giao diện mới
         profile_badge_visible: "true",
-        profile_badge_enabled: "true",
-        gold_profile_badge_enabled: "true",
-        show_profile_badge: "true",
-        show_gold_badge: "true",
-        gold_badge_enabled: "true",
-        is_gold: "true",
-        is_gold_user: "true",
-        gold_subscriber: "true",
-        gold_enabled: "true",
-        profile_badge_config: JSON.stringify({
-            enabled: true,
-            visible: true,
-            badge_type: "gold",
-            style: "gold_gradient"
-        }),
         lunar_new_year_app_icon_enabled: "true"
     });
 
     // ============================================================
-    // 2. CHẶN QUẢNG CÁO & TẮT TRACKING (SENTRY)
+    // 2. CHẶN QUẢNG CÁO & TẮT TRACKING
     // ============================================================
     Object.assign(obj.entries, {
         history_ads_mode: "off",
@@ -106,7 +89,7 @@ if (ua.includes("locket")) {
     });
 
     // ============================================================
-    // 3. CAMERA, VIDEO, SOUND & UPLOAD QUALITY (SỬA LỖI MẤT TIẾNG)
+    // 3. CAMERA, VIDEO (Đã điều chỉnh nhẹ để cải thiện âm thanh)
     // ============================================================
     Object.assign(obj.entries, {
         camera: JSON.stringify({
@@ -122,10 +105,8 @@ if (ua.includes("locket")) {
             telephoto: true,
             srgb: true,
             lanczos: true,
-            quality_mbps: 1.5,
-            qualityMbps: 1.5,
-            audio_enabled: true,
-            sound_enabled: true
+            quality_mbps: 0.3,
+            qualityMbps: 0.3
         }),
         camera_roll: JSON.stringify({
             gold_max_duration: 60.0,
@@ -137,11 +118,9 @@ if (ua.includes("locket")) {
             trim_max_duration: 60.0,
             trimMaxDuration: 60.0,
             camera_roll_max_duration: 60.0,
-            quality_mbps: 1.5,
-            qualityMbps: 1.5,
-            flash_button: true,
-            audio_enabled: true,
-            sound_enabled: true
+            quality_mbps: 0.3,
+            qualityMbps: 0.3,
+            flash_button: true
         }),
         live_photos: JSON.stringify({
             capture: true,
@@ -186,14 +165,11 @@ if (ua.includes("locket")) {
         trim_max_duration: "60.0",
         gold_max_duration: "60.0",
         goldMaxDuration: "60.0",
-        video_quality_mbps: "1.5",
+        video_quality_mbps: "0.3",
         video_sound_enabled: "true",
-        video_audio_enabled: "true",
-        camera_audio_enabled: "true",
         microphone_enabled: "true",
         camera_microphone_enabled: "true",
-        // Đã sửa từ "true" thành "false" để mở luồng âm thanh iOS
-        audio_session_deactivation_enabled: "false",
+        audio_session_deactivation_enabled: "true",
         zoom_enabled: "true",
         upload_main: "false",
         upload_main_image_quality: "1.0",
@@ -254,6 +230,7 @@ if (ua.includes("locket")) {
         signup_allow_skip_add_friends: "true"
     });
 
+
     // ============================================================
     // 5. MOMENTS, STREAK, CHAT & TƯƠNG TÁC
     // ============================================================
@@ -295,7 +272,7 @@ if (ua.includes("locket")) {
     });
 
     // ============================================================
-    // 6. WIDGET, THÔNG BÁO & GIAO DIỆN (SỬA LỖI KHUNG VIỀN WIDGET)
+    // 6. WIDGET, THÔNG BÁO & GIAO DIỆN (JOURNAL / PROFILE)
     // ============================================================
     Object.assign(obj.entries, {
         widget_frame_event_max_images: "5",
@@ -306,12 +283,12 @@ if (ua.includes("locket")) {
         widget_last_sent_indicator: "false",
         widget_sync_token_reload_mode: "clearTokenNever",
         widget_frame_event: JSON.stringify({
-                uid: "locketgold",
-                url: "https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/gold_frame.png",
-                use_local_time_zone: true,
-                placement: "above", // Đã sửa từ "below" thành "above" để khung hiển thị đè lên ảnh
-                start_at: "2020-11-01T00:00:00",
-                end_at: "2099-11-30T23:59:59"
+            uid: "locketgold",
+            url: "https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/gold_frame.png",
+            use_local_time_zone: true,
+            placement: "below",
+            start_at: "2020-11-01T00:00:00",
+            end_at: "2099-11-30T23:59:59"
         }),
         live_activity_onboarding: "true",
         live_activity_onboarding_variant: "friending",
@@ -426,7 +403,7 @@ if (ua.includes("locket")) {
                     { overlay_id: "caption:autumn_2026", source: "remote", caption: { background: { colors: ["#FFE0A0", "#F6A53A"] }, icon: { data: "🍂", type: "emoji" }, max_lines: 1, text: "Xin chào Mùa Thu", localized_text: { en: "Xin chào Mùa Thu", vn: "Xin chào Mùa Thu" }, text_color: "#FFFFFF", type: "static_content" } },
                     { overlay_id: "caption:christmas_day_2026", source: "remote", caption: { background: { colors: ["#E53935", "#A81818"] }, icon: { data: "🎄", type: "emoji" }, max_lines: 1, text: "Giáng sinh an lành", localized_text: { en: "Giáng sinh an lành", vn: "Giáng sinh an lành" }, text_color: "#FFFFFF", type: "static_content" } },
                     { overlay_id: "caption:new_years_eve_2026", source: "remote", caption: { background: { colors: ["#FFC64B", "#FFEDBF"] }, icon: { data: "🥂", type: "emoji" }, max_lines: 1, text: "Xin chào 2027!", localized_text: { en: "Xin chào 2027!", vn: "Xin chào 2027!" }, text_color: "#643F00", type: "static_content" } },
-                    { overlay_id: "caption:graduation_day", source: "remote", caption: { background: { colors: ["#1A237E", "#283593"] }, icon: { data: "🎓", type: "emoji" }, max_lines: 1, text: "Happy Graduation Day!", localized_text: { en: "Happy Graduation Day!", vn: "Chúc mừng tốt nghiệp!" }, text_color: "#FFFFFFE6", type: "static_content" } }
+                                        { overlay_id: "caption:graduation_day", source: "remote", caption: { background: { colors: ["#1A237E", "#283593"] }, icon: { data: "🎓", type: "emoji" }, max_lines: 1, text: "Happy Graduation Day!", localized_text: { en: "Happy Graduation Day!", vn: "Chúc mừng tốt nghiệp!" }, text_color: "#FFFFFFE6", type: "static_content" } }
                 ]
             },
             {
