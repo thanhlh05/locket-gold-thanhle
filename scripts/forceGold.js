@@ -1,5 +1,5 @@
 // ============================================================
-// Locket Remote Config Rewrite - FULL 100% OPTIMIZED
+// Locket Remote Config Rewrite - ULTIMATE FIX
 // Endpoint: firebaseremoteconfig.googleapis.com
 
 var ua = ($request.headers["User-Agent"] || $request.headers["user-agent"] || "").toLowerCase();
@@ -64,15 +64,23 @@ if (ua.includes("locket")) {
             use_local_time_zone: true
         }),
         android_subscribe_gold_button_enabled: "false",
-        // Ép bật Profile Badge tuyệt đối
+        // Ép bật Profile Badge chuẩn giao diện mới
         profile_badge_visible: "true",
         profile_badge_enabled: "true",
         gold_profile_badge_enabled: "true",
         show_profile_badge: "true",
+        show_gold_badge: "true",
+        gold_badge_enabled: "true",
         is_gold: "true",
         is_gold_user: "true",
         gold_subscriber: "true",
         gold_enabled: "true",
+        profile_badge_config: JSON.stringify({
+            enabled: true,
+            visible: true,
+            badge_type: "gold",
+            style: "gold_gradient"
+        }),
         lunar_new_year_app_icon_enabled: "true"
     });
 
@@ -98,7 +106,7 @@ if (ua.includes("locket")) {
     });
 
     // ============================================================
-    // 3. CAMERA, VIDEO, SOUND & UPLOAD QUALITY (CHUẨN AUDIO)
+    // 3. CAMERA, VIDEO, SOUND & UPLOAD QUALITY (SỬA LỖI MẤT TIẾNG)
     // ============================================================
     Object.assign(obj.entries, {
         camera: JSON.stringify({
@@ -184,7 +192,8 @@ if (ua.includes("locket")) {
         camera_audio_enabled: "true",
         microphone_enabled: "true",
         camera_microphone_enabled: "true",
-        audio_session_deactivation_enabled: "true",
+        // Đã sửa từ "true" thành "false" để mở luồng âm thanh iOS
+        audio_session_deactivation_enabled: "false",
         zoom_enabled: "true",
         upload_main: "false",
         upload_main_image_quality: "1.0",
@@ -286,7 +295,7 @@ if (ua.includes("locket")) {
     });
 
     // ============================================================
-    // 6. WIDGET, THÔNG BÁO & GIAO DIỆN (JOURNAL / PROFILE)
+    // 6. WIDGET, THÔNG BÁO & GIAO DIỆN (SỬA LỖI KHUNG VIỀN WIDGET)
     // ============================================================
     Object.assign(obj.entries, {
         widget_frame_event_max_images: "5",
@@ -300,7 +309,7 @@ if (ua.includes("locket")) {
                 uid: "locketgold",
                 url: "https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/gold_frame.png",
                 use_local_time_zone: true,
-                placement: "below",
+                placement: "above", // Đã sửa từ "below" thành "above" để khung hiển thị đè lên ảnh
                 start_at: "2020-11-01T00:00:00",
                 end_at: "2099-11-30T23:59:59"
         }),
