@@ -1,9 +1,4 @@
-const mapping = {
-  '%E8%BD%A6%E7%A5%A8%E7%A5%A8': ['vip+watch_vip'],
-  'Locket': ['Gold']
-};
-
-var ua = $request.headers["User-Agent"] || $request.headers["user-agent"];
+var ua = ($request.headers["User-Agent"] || $request.headers["user-agent"] || "").toLowerCase();
 var obj = JSON.parse($response.body);
 obj.Attention = "Enjoy";
 
@@ -27,22 +22,11 @@ var entitlementData = {
   expires_date: "2099-12-18T01:04:17Z"
 };
 
-const match = Object.keys(mapping).find(e => ua.includes(e));
-
-if (match) {
-  let [e, s] = mapping[match];
-  
-  if (s) {
-    entitlementData.product_identifier = s;
-    obj.subscriber.subscriptions[s] = subscriptionData;
-  } else {
-    obj.subscriber.subscriptions["com.locket.Locket.premium.yearly"] = subscriptionData;
-  }
-  
-  obj.subscriber.entitlements[e] = entitlementData;
-} else {
+if (obj.subscriber) {
   obj.subscriber.subscriptions["com.locket.Locket.premium.yearly"] = subscriptionData;
-  obj.subscriber.entitlements.pro = entitlementData;
+  obj.subscriber.entitlements["Gold"] = entitlementData;
+  obj.subscriber.entitlements["gold"] = entitlementData;
+  obj.subscriber.entitlements["pro"] = entitlementData;
 }
 
-$done({body: JSON.stringify(obj)});
+$done({ body: JSON.stringify(obj) });

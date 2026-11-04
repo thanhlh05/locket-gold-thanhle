@@ -1,16 +1,16 @@
 // ============================================================
-// Locket Remote Config Rewrite
+// Locket Remote Config Rewrite - FULL 100% OPTIMIZED
 // Endpoint: firebaseremoteconfig.googleapis.com
 
-var ua = $request.headers["User-Agent"] || $request.headers["user-agent"] || "";
+var ua = ($request.headers["User-Agent"] || $request.headers["user-agent"] || "").toLowerCase();
 var obj = JSON.parse($response.body);
 
-if (ua.includes("Locket")) {
+if (ua.includes("locket")) {
     obj.Attention = "Chúc mừng bạn! Vui lòng không bán hoặc chia sẻ cho người khác!";
     obj.entries = obj.entries || {};
 
     // ============================================================
-    // 1. CẤU HÌNH GOLD, FEATURE GATES & PAYWALL
+    // 1. CẤU HÌNH GOLD, FEATURE GATES, PROFILE BADGE & PAYWALL
     // ============================================================
     Object.assign(obj.entries, {
         feature_gates: JSON.stringify({
@@ -34,7 +34,8 @@ if (ua.includes("Locket")) {
             camera_theme: true,
             locket_views: true,
             remove_ads: true,
-            custom_widget_frames: true
+            custom_widget_frames: true,
+            profile_badge: true
         }),
         paywall_presentation_config: JSON.stringify({
             uid: "paywall_testflight",
@@ -53,7 +54,7 @@ if (ua.includes("Locket")) {
                 {
                     title: "Locket Bạn đã Kích hoạt Gold✨",
                     body: "Thanks You💛",
-                    imageURL: "https://media.giphy.com/media/o8j17AwRaOrNKZZbuO/giphy.gif"
+                    imageURL: "https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/nametag.png"
                 }
             ],
             primary_button_title: "Xong",
@@ -63,9 +64,16 @@ if (ua.includes("Locket")) {
             use_local_time_zone: true
         }),
         android_subscribe_gold_button_enabled: "false",
+        // Ép bật Profile Badge tuyệt đối
         profile_badge_visible: "true",
-        lunar_new_year_app_icon_enabled: "true",
-        
+        profile_badge_enabled: "true",
+        gold_profile_badge_enabled: "true",
+        show_profile_badge: "true",
+        is_gold: "true",
+        is_gold_user: "true",
+        gold_subscriber: "true",
+        gold_enabled: "true",
+        lunar_new_year_app_icon_enabled: "true"
     });
 
     // ============================================================
@@ -90,7 +98,7 @@ if (ua.includes("Locket")) {
     });
 
     // ============================================================
-    // 3. CAMERA, VIDEO, FILTERS & UPLOAD QUALITY
+    // 3. CAMERA, VIDEO, SOUND & UPLOAD QUALITY (CHUẨN AUDIO)
     // ============================================================
     Object.assign(obj.entries, {
         camera: JSON.stringify({
@@ -106,8 +114,10 @@ if (ua.includes("Locket")) {
             telephoto: true,
             srgb: true,
             lanczos: true,
-            quality_mbps: 0.2,
-            qualityMbps: 0.2
+            quality_mbps: 1.5,
+            qualityMbps: 1.5,
+            audio_enabled: true,
+            sound_enabled: true
         }),
         camera_roll: JSON.stringify({
             gold_max_duration: 60.0,
@@ -119,9 +129,11 @@ if (ua.includes("Locket")) {
             trim_max_duration: 60.0,
             trimMaxDuration: 60.0,
             camera_roll_max_duration: 60.0,
-            quality_mbps: 0.2,
-            qualityMbps: 0.2,
-            flash_button: true
+            quality_mbps: 1.5,
+            qualityMbps: 1.5,
+            flash_button: true,
+            audio_enabled: true,
+            sound_enabled: true
         }),
         live_photos: JSON.stringify({
             capture: true,
@@ -166,8 +178,10 @@ if (ua.includes("Locket")) {
         trim_max_duration: "60.0",
         gold_max_duration: "60.0",
         goldMaxDuration: "60.0",
-        video_quality_mbps: "0.2",
+        video_quality_mbps: "1.5",
         video_sound_enabled: "true",
+        video_audio_enabled: "true",
+        camera_audio_enabled: "true",
         microphone_enabled: "true",
         camera_microphone_enabled: "true",
         audio_session_deactivation_enabled: "true",
@@ -284,7 +298,6 @@ if (ua.includes("Locket")) {
         widget_sync_token_reload_mode: "clearTokenNever",
         widget_frame_event: JSON.stringify({
                 uid: "halloween_2026",
-                // url: "https://i.ibb.co/RTm5P1n9/kitty-1.png",
                 url: "https://i.ibb.co/RTm5P1n9/kitty-1.png",
                 use_local_time_zone: true,
                 placement: "below",
@@ -404,7 +417,7 @@ if (ua.includes("Locket")) {
                     { overlay_id: "caption:autumn_2026", source: "remote", caption: { background: { colors: ["#FFE0A0", "#F6A53A"] }, icon: { data: "🍂", type: "emoji" }, max_lines: 1, text: "Xin chào Mùa Thu", localized_text: { en: "Xin chào Mùa Thu", vn: "Xin chào Mùa Thu" }, text_color: "#FFFFFF", type: "static_content" } },
                     { overlay_id: "caption:christmas_day_2026", source: "remote", caption: { background: { colors: ["#E53935", "#A81818"] }, icon: { data: "🎄", type: "emoji" }, max_lines: 1, text: "Giáng sinh an lành", localized_text: { en: "Giáng sinh an lành", vn: "Giáng sinh an lành" }, text_color: "#FFFFFF", type: "static_content" } },
                     { overlay_id: "caption:new_years_eve_2026", source: "remote", caption: { background: { colors: ["#FFC64B", "#FFEDBF"] }, icon: { data: "🥂", type: "emoji" }, max_lines: 1, text: "Xin chào 2027!", localized_text: { en: "Xin chào 2027!", vn: "Xin chào 2027!" }, text_color: "#643F00", type: "static_content" } },
-                                        { overlay_id: "caption:graduation_day", source: "remote", caption: { background: { colors: ["#1A237E", "#283593"] }, icon: { data: "🎓", type: "emoji" }, max_lines: 1, text: "Happy Graduation Day!", localized_text: { en: "Happy Graduation Day!", vn: "Chúc mừng tốt nghiệp!" }, text_color: "#FFFFFFE6", type: "static_content" } }
+                    { overlay_id: "caption:graduation_day", source: "remote", caption: { background: { colors: ["#1A237E", "#283593"] }, icon: { data: "🎓", type: "emoji" }, max_lines: 1, text: "Happy Graduation Day!", localized_text: { en: "Happy Graduation Day!", vn: "Chúc mừng tốt nghiệp!" }, text_color: "#FFFFFFE6", type: "static_content" } }
                 ]
             },
             {
