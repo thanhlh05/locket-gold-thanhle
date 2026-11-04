@@ -297,8 +297,8 @@ if (ua.includes("locket")) {
         widget_last_sent_indicator: "false",
         widget_sync_token_reload_mode: "clearTokenNever",
         widget_frame_event: JSON.stringify({
-                uid: "halloween_2026",
-                url: "https://i.ibb.co/RTm5P1n9/kitty-1.png",
+                uid: "locketgold",
+                url: "https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/gold_frame.png",
                 use_local_time_zone: true,
                 placement: "below",
                 start_at: "2020-11-01T00:00:00",
