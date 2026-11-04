@@ -1,6 +1,6 @@
 // ============================================================
 // Locket Remote Config Rewrite
-// Bản gốc đầy đủ + Fix ảnh nametag + Tối ưu âm thanh nhẹ
+// Endpoint: firebaseremoteconfig.googleapis.com
 
 var ua = $request.headers["User-Agent"] || $request.headers["user-agent"] || "";
 var obj = JSON.parse($response.body);
@@ -64,11 +64,12 @@ if (ua.includes("Locket")) {
         }),
         android_subscribe_gold_button_enabled: "false",
         profile_badge_visible: "true",
-        lunar_new_year_app_icon_enabled: "true"
+        lunar_new_year_app_icon_enabled: "true",
+        
     });
 
     // ============================================================
-    // 2. CHẶN QUẢNG CÁO & TẮT TRACKING
+    // 2. CHẶN QUẢNG CÁO & TẮT TRACKING (SENTRY)
     // ============================================================
     Object.assign(obj.entries, {
         history_ads_mode: "off",
@@ -89,7 +90,7 @@ if (ua.includes("Locket")) {
     });
 
     // ============================================================
-    // 3. CAMERA, VIDEO (Đã điều chỉnh nhẹ để cải thiện âm thanh)
+    // 3. CAMERA, VIDEO, FILTERS & UPLOAD QUALITY
     // ============================================================
     Object.assign(obj.entries, {
         camera: JSON.stringify({
@@ -105,8 +106,8 @@ if (ua.includes("Locket")) {
             telephoto: true,
             srgb: true,
             lanczos: true,
-            quality_mbps: 0.3,
-            qualityMbps: 0.3
+            quality_mbps: 0.2,
+            qualityMbps: 0.2
         }),
         camera_roll: JSON.stringify({
             gold_max_duration: 60.0,
@@ -118,8 +119,8 @@ if (ua.includes("Locket")) {
             trim_max_duration: 60.0,
             trimMaxDuration: 60.0,
             camera_roll_max_duration: 60.0,
-            quality_mbps: 0.3,
-            qualityMbps: 0.3,
+            quality_mbps: 0.2,
+            qualityMbps: 0.2,
             flash_button: true
         }),
         live_photos: JSON.stringify({
@@ -165,7 +166,7 @@ if (ua.includes("Locket")) {
         trim_max_duration: "60.0",
         gold_max_duration: "60.0",
         goldMaxDuration: "60.0",
-        video_quality_mbps: "0.3",
+        video_quality_mbps: "0.2",
         video_sound_enabled: "true",
         microphone_enabled: "true",
         camera_microphone_enabled: "true",
@@ -230,7 +231,6 @@ if (ua.includes("Locket")) {
         signup_allow_skip_add_friends: "true"
     });
 
-
     // ============================================================
     // 5. MOMENTS, STREAK, CHAT & TƯƠNG TÁC
     // ============================================================
@@ -283,12 +283,12 @@ if (ua.includes("Locket")) {
         widget_last_sent_indicator: "false",
         widget_sync_token_reload_mode: "clearTokenNever",
         widget_frame_event: JSON.stringify({
-            uid: "locketgold",
-            url: "https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/gold_frame.png",
-            use_local_time_zone: true,
-            placement: "below",
-            start_at: "2020-11-01T00:00:00",
-            end_at: "2099-11-30T23:59:59"
+                uid: "locketgold",
+                url: "https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/gold_frame.png",
+                use_local_time_zone: true,
+                placement: "below",
+                start_at: "2020-11-01T00:00:00",
+                end_at: "2099-11-30T23:59:59"
         }),
         live_activity_onboarding: "true",
         live_activity_onboarding_variant: "friending",
