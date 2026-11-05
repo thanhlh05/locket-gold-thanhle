@@ -10,7 +10,7 @@ if (ua.includes("Locket")) {
     obj.entries = obj.entries || {};
 
     // ============================================================
-    // 1. CẤU HÌNH GOLD, FEATURE GATES & PAYWALL
+    // 1. CẤU HÌNH GOLD, FEATURE GATES & PAYWALL + CELEBRITY
     // ============================================================
     Object.assign(obj.entries, {
         feature_gates: JSON.stringify({
@@ -66,6 +66,12 @@ if (ua.includes("Locket")) {
         profile_badge_visible: "true",
         lunar_new_year_app_icon_enabled: "true",
         
+        celebrity_inbox_enabled: "true",
+        celebrity_vip_qr_redemption_enabled: "true",
+        username_suggestions_enabled: "true",
+        signup_custom_profile_picture: "true",
+        user_data_export_enabled: "true",
+        looks_native_enabled: "true"     
     });
 
     // ============================================================
@@ -183,12 +189,12 @@ if (ua.includes("Locket")) {
     // 4. BẠN BÈ, GIỚI HẠN & ĐỀ XUẤT KẾT BẠN
     // ============================================================
     Object.assign(obj.entries, {
-        max_friends_count: "999999",
+        max_friends_count: "999999999",
         friend_limit_mode: "0",
-        soft_friend_limit_threshold_count: "999999",
+        soft_friend_limit_threshold_count: "999999999",
         show_friend_limit_on_cam: "false",
-        signup_max_friends_count: "999999",
-        celebrity_inbox_limit: "999999",
+        signup_max_friends_count: "999999999",
+        celebrity_inbox_limit: "999999999",
         friend_limit_geo_override: JSON.stringify({ experiments: {}, area_code_overrides: {} }),
         friends_sheet_locket_count_config: JSON.stringify({
             items: [

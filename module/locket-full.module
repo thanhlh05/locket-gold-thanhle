@@ -1,16 +1,31 @@
-#!name=Locket Gold By Thanh Lê
-#!desc=Mở khóa Gold đầy đủ - Video 60s - Caption dài - Unlimited friends - Tắt ads
+#!name=Locket Gold Full By Thanh Lê
+#!desc=Mở khóa Gold đầy đủ - Video 60s - Caption dài - Unlimited friends - Tắt ads - Giữ Badge - Force US - Multi-domain - Diagnostic
 #!author=Thanh Lê
+#!homepage=https://github.com/thanhlh05/locket-gold-thanhle
+#!icon=https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/nametag.png
 
 [Script]
-# RevenueCat - Giả mạo Gold
-revenuecat = type=http-response, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$), script-path=https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/scripts/locket.js, requires-body=true, max-size=-1, timeout=60
+# 1. RevenueCat - Giả mạo Gold (multi-domain đầy đủ)
+revenuecat = type=http-response, pattern=^https:\/\/api\.(revenuecat|rc-backup)\.com\/.+\/(receipts$|subscribers\/[^/]+/?$)|^https:\/\/api-production\.8-lives-cat\.io\/.+\/(receipts$|subscribers\/[^/]+/?$), script-path=https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/scripts/locket.js, requires-body=true, max-size=-1, timeout=60
 
-# Xóa ETag
-deleteHeader = type=http-request, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers), script-path=https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/scripts/delheader.js, timeout=30
+# 2. Xóa ETag
+deleteHeader = type=http-request, pattern=^https:\/\/api\.(revenuecat|rc-backup)\.com\/.+\/(receipts|subscribers)|^https:\/\/api-production\.8-lives-cat\.io\/.+\/(receipts|subscribers), script-path=https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/scripts/delheader.js, timeout=30
 
-# Firebase Remote Config - Ép full tính năng
+# 3. Force US Region
+locket_rc_us = type=http-request, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/namespaces\/firebase:fetch, requires-body=true, max-size=0, script-path=https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/scripts/forceUS.js, timeout=15
+
+# 4. Firebase Remote Config full
 locket_rc = type=http-response, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/.+, script-path=https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/scripts/forceGold.js, requires-body=true, max-size=-1, timeout=60, script-update-interval=3600
 
+# 5. Giữ Badge + Profile
+locket_badge = type=http-request, pattern=^https:\/\/api\.locketcamera\.com\/changeProfileInfo, script-path=https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/scripts/locket_profile.js, timeout=30
+locket_user = type=http-response, pattern=^https:\/\/api\.locketcamera\.com\/.+ , script-path=https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/scripts/locket_profile.js, requires-body=true, max-size=-1, timeout=30
+
+# 6. Diagnostic page
+locket_status = type=http-request, pattern=^http:\/\/locket-status\.invalid\/(?:status)?$, script-path=https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/scripts/diagnostic.js, timeout=10
+
+[Host]
+locket-status.invalid = 198.18.0.1
+
 [MITM]
-hostname = %APPEND% api.revenuecat.com, firebaseremoteconfig.googleapis.com
+hostname = %APPEND% api.revenuecat.com, api.rc-backup.com, api-production.8-lives-cat.io, firebaseremoteconfig.googleapis.com, api.locketcamera.com
