@@ -147,21 +147,65 @@ if (ua.includes("Locket")) {
             sheet_enabled: true,
             open_sheet_immediately: true,
             sheet_filters: [
-                { title: { en: "Goofy" }, filter_ids: ["okay_wig", "influencer", "looks_maxxing", "toothless", "bye_brows"] },
-                { title: { en: "Looks" }, filter_ids: ["bowling_ball", "blonde_bleached", "beard", "bob_cut", "buns", "tatted", "mohawk", "braces", "bye_brows"] },
-                { title: { en: "Celebrate" }, filter_ids: ["slimed", "princess", "disco_lights", "cash_money", "happy_birthday"] },
-                { title: { en: "Cute" }, filter_ids: ["cutesy", "sticker_face", "flower_crown", "love_bug"] },
-                { title: { en: "Costumes" }, filter_ids: ["wedding", "cowboy_cowgirl", "giraffe", "clown"] },
-                { title: { en: "Holidays" }, filter_ids: ["easter_bunney_cutout", "easter_chick_cutout", "bearded", "leprechaun", "lucky_face", "sweet_hearts", "elf_cutout", "santa_cutout", "frosty"] }
+                {
+                    title: { en: "Photobooth", vi: "Photobooth" },
+                    filter_ids: [
+                        "cutesy", "sticker_face", "flower_crown", "love_bug",
+                        "princess", "disco_lights", "happy_birthday", "slimed"
+                    ]
+                },
+                {
+                    title: { en: "Trending", vi: "Xu hướng" },
+                    filter_ids: [
+                        "influencer", "looks_maxxing", "okay_wig", "bye_brows",
+                        "blonde_bleached", "bob_cut", "buns", "braces"
+                    ]
+                },
+                {
+                    title: { en: "Cute", vi: "Dễ thương" },
+                    filter_ids: [
+                        "cutesy", "flower_crown", "love_bug", "sticker_face",
+                        "princess", "happy_birthday", "giraffe"
+                    ]
+                },
+                {
+                    title: { en: "Anime & Fun", vi: "Anime & Vui" },
+                    filter_ids: [
+                        "toothless", "okay_wig", "clown", "giraffe",
+                        "cowboy_cowgirl", "beard", "mohawk", "tatted"
+                    ]
+                },
+                {
+                    title: { en: "Looks", vi: "Phong cách" },
+                    filter_ids: [
+                        "bowling_ball", "blonde_bleached", "beard", "bob_cut",
+                        "buns", "tatted", "mohawk", "braces", "bye_brows"
+                    ]
+                },
+                {
+                    title: { en: "Party", vi: "Tiệc tùng" },
+                    filter_ids: [
+                        "disco_lights", "cash_money", "slimed", "happy_birthday",
+                        "princess", "wedding"
+                    ]
+                },
+                {
+                    title: { en: "Holidays", vi: "Lễ hội" },
+                    filter_ids: [
+                        "santa_cutout", "elf_cutout", "frosty", "leprechaun",
+                        "easter_bunney_cutout", "easter_chick_cutout", "sweet_hearts"
+                    ]
+                }
             ],
             picker_filters: [
-                "okay_wig", "influencer", "looks_maxxing", "toothless", "bye_brows",
-                "bowling_ball", "blonde_bleached", "beard", "bob_cut", "buns",
-                "tatted", "mohawk", "braces", "slimed", "princess",
-                "disco_lights", "cash_money", "happy_birthday", "cutesy", "sticker_face",
-                "flower_crown", "love_bug", "wedding", "cowboy_cowgirl", "giraffe",
-                "clown", "easter_bunney_cutout", "easter_chick_cutout", "bearded", "leprechaun",
-                "lucky_face", "sweet_hearts", "elf_cutout", "santa_cutout", "frosty"
+                // Ưu tiên những cái đẹp & đang hot lên đầu
+                "cutesy", "flower_crown", "love_bug", "sticker_face", "princess",
+                "influencer", "looks_maxxing", "okay_wig", "bye_brows",
+                "blonde_bleached", "bob_cut", "buns", "disco_lights", "happy_birthday",
+                "slimed", "giraffe", "toothless", "clown", "cowboy_cowgirl",
+                "bowling_ball", "beard", "mohawk", "tatted", "braces",
+                "cash_money", "wedding", "santa_cutout", "elf_cutout", "frosty",
+                "leprechaun", "easter_bunney_cutout", "easter_chick_cutout", "sweet_hearts"
             ]
         }),
         camera_roll_preview_enabled: "true",
