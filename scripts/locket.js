@@ -13,7 +13,9 @@ var sub = {
   original_purchase_date: "2023-01-01T00:00:00Z",
   purchase_date: "2023-01-01T00:00:00Z",
   store: "app_store",
-  store_transaction_id: "1000000000000000"
+  store_transaction_id: "1000000000000000",
+  auto_resume_date: null,
+  is_trial: false
 };
 
 var ent = {
@@ -27,18 +29,20 @@ if (!obj.subscriber) obj.subscriber = {};
 if (!obj.subscriber.subscriptions) obj.subscriber.subscriptions = {};
 if (!obj.subscriber.entitlements) obj.subscriber.entitlements = {};
 
-// Set nhiều tên phổ biến để tăng khả năng nhận
 obj.subscriber.subscriptions["com.locket.Locket.premium.yearly"] = sub;
 obj.subscriber.subscriptions["rc_promo_Gold_lifetime"] = sub;
 obj.subscriber.subscriptions["Gold"] = sub;
+obj.subscriber.subscriptions["premium"] = sub;
 
 obj.subscriber.entitlements["Gold"] = ent;
 obj.subscriber.entitlements["pro"] = ent;
 obj.subscriber.entitlements["premium"] = ent;
 obj.subscriber.entitlements["locket_gold"] = ent;
+obj.subscriber.entitlements["Locket Gold"] = ent;
 
 obj.subscriber.original_app_user_id = obj.subscriber.original_app_user_id || "$RCAnonymousID:locketgold";
 obj.subscriber.first_seen = "2023-01-01T00:00:00Z";
 obj.subscriber.last_seen = new Date().toISOString();
+obj.subscriber.management_url = null;
 
 $done({ body: JSON.stringify(obj) });
