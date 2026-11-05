@@ -16,6 +16,8 @@ Mở khóa toàn bộ tính năng Locket Gold một cách ổn định và mạn
 - Hỗ trợ DNS chống thu hồi (NextDNS)
 
 ## Cấu trúc thư mục
+
+```text
 ├── scripts/
 │   ├── locket.js              # Fake RevenueCat Gold
 │   ├── delheader.js           # Xóa ETag
@@ -23,9 +25,8 @@ Mở khóa toàn bộ tính năng Locket Gold một cách ổn định và mạn
 │   ├── forceGold.js           # Remote Config (60s + captions + celebrity)
 │   ├── locket_profile.js      # Giữ Badge + Profile
 │   └── diagnostic.js          # Trang kiểm tra status
-└── module/
-│   ├── locket-full.module         # Module chính
+├── module/
+│   └── locket-full.module     # Module chính
 ├── gold_frame.png
 ├── nametag.png
-└── README.
-
+└── README.md
