@@ -26,10 +26,7 @@ if (ua.includes("Locket")) {
             remove_ads: "enabled",
             video: "enabled",
             custom_widget_frames: "enabled",
-            streak_recovery: "enabled",
-            camera_filters: "enabled",      
-            filters: "enabled",                 
-            looks: "enabled"                 
+            streak_recovery: "enabled"
         }),
         upsell_features: JSON.stringify({
             app_icon_picker: true,
@@ -74,17 +71,7 @@ if (ua.includes("Locket")) {
         username_suggestions_enabled: "true",
         signup_custom_profile_picture: "true",
         user_data_export_enabled: "true",
-        camera_filter_button_enabled: "false",
-        camera_filters_enabled: "false",
-        filters_enabled: "false",
-        looks_native_enabled: "false",
-        allows_custom_filters: "false",
-        show_filter_button: "false",
-        filter_application_enabled: "false",
-        realtime_filters_enabled: "false",
-        camera_realtime_filters: "false",
-        looks_enabled: "false",
-        native_looks_enabled: "false"
+        looks_native_enabled: "true"     
     });
 
     // ============================================================
@@ -303,7 +290,7 @@ if (ua.includes("Locket")) {
         widget_sync_token_reload_mode: "clearTokenNever",
         widget_frame_event: JSON.stringify({
                 uid: "locketgold",
-                url: "https://i.ibb.co/JPWbVyR/gold-frame.png",
+                url: "https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/gold_frame.png",
                 use_local_time_zone: true,
                 placement: "below",
                 start_at: "2020-11-01T00:00:00",
