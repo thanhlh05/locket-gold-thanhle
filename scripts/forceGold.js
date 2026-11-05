@@ -77,7 +77,14 @@ if (ua.includes("Locket")) {
         camera_filter_button_enabled: "true",
         camera_filters_enabled: "true",
         filters_enabled: "true",
-        looks_native_enabled: "true"     
+        looks_native_enabled: "true",
+        allows_custom_filters: "true",
+        show_filter_button: "true",
+        filter_application_enabled: "true",
+        realtime_filters_enabled: "true",
+        camera_realtime_filters: "true",
+        looks_enabled: "true",
+        native_looks_enabled: "true"
     });
 
     // ============================================================
