@@ -74,17 +74,17 @@ if (ua.includes("Locket")) {
         username_suggestions_enabled: "true",
         signup_custom_profile_picture: "true",
         user_data_export_enabled: "true",
-        camera_filter_button_enabled: "true",
-        camera_filters_enabled: "true",
-        filters_enabled: "true",
-        looks_native_enabled: "true",
-        allows_custom_filters: "true",
-        show_filter_button: "true",
-        filter_application_enabled: "true",
-        realtime_filters_enabled: "true",
-        camera_realtime_filters: "true",
-        looks_enabled: "true",
-        native_looks_enabled: "true"
+        camera_filter_button_enabled: "false",
+        camera_filters_enabled: "false",
+        filters_enabled: "false",
+        looks_native_enabled: "false",
+        allows_custom_filters: "false",
+        show_filter_button: "false",
+        filter_application_enabled: "false",
+        realtime_filters_enabled: "false",
+        camera_realtime_filters: "false",
+        looks_enabled: "false",
+        native_looks_enabled: "false"
     });
 
     // ============================================================
@@ -149,8 +149,8 @@ if (ua.includes("Locket")) {
             widget_looping_mode: "never"
         }),
         camera_filter_config: JSON.stringify({
-            allows_custom_filters: true,
-            show_filter_button: true,
+            allows_custom_filters: false,
+            show_filter_button: false,
             sheet_enabled: true,
             open_sheet_immediately: true,
             sheet_filters: [
