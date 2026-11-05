@@ -7,47 +7,37 @@ const method = $request.method || "";
 function forceGoldBadge(obj) {
     if (!obj || typeof obj !== "object") return obj;
 
-    // Ép trực tiếp trên object
-    obj.profile_badge_visible = true;
-    obj.has_gold = true;
-    obj.is_gold = true;
-    obj.gold = true;
-    obj.isGold = true;
-    obj.hasGold = true;
+    const force = (target) => {
+        if (!target || typeof target !== "object") return;
+        target.profile_badge_visible = true;
+        target.has_gold = true;
+        target.is_gold = true;
+        target.gold = true;
+        target.isGold = true;
+        target.hasGold = true;
+        target.badge = "gold";
+        target.profileBadge = "gold";
+        target.subscription_status = "active";
+        target.premium = true;
+        target.is_premium = true;
 
-    // Ép trong user
-    if (obj.user) {
-        obj.user.profile_badge_visible = true;
-        obj.user.has_gold = true;
-        obj.user.is_gold = true;
-        obj.user.gold = true;
-        obj.user.isGold = true;
-        obj.user.hasGold = true;
-
-        if (obj.user.customAttributes) {
-            obj.user.customAttributes.revenueCatEntitlements = ["Gold"];
-            obj.user.customAttributes.entitlements = ["Gold"];
+        if (target.customAttributes) {
+            target.customAttributes.revenueCatEntitlements = ["Gold"];
+            target.customAttributes.entitlements = ["Gold"];
+            target.customAttributes.has_gold = true;
         } else {
-            obj.user.customAttributes = {
+            target.customAttributes = {
                 revenueCatEntitlements: ["Gold"],
-                entitlements: ["Gold"]
+                entitlements: ["Gold"],
+                has_gold: true
             };
         }
-    }
+    };
 
-    // Ép trong data.user
-    if (obj.data && obj.data.user) {
-        obj.data.user.profile_badge_visible = true;
-        obj.data.user.has_gold = true;
-        obj.data.user.is_gold = true;
-        obj.data.user.gold = true;
-    }
-
-    // Ép customAttributes gốc
-    if (obj.customAttributes) {
-        obj.customAttributes.revenueCatEntitlements = ["Gold"];
-        obj.customAttributes.entitlements = ["Gold"];
-    }
+    force(obj);
+    if (obj.user) force(obj.user);
+    if (obj.data && obj.data.user) force(obj.data.user);
+    if (obj.data) force(obj.data);
 
     return obj;
 }
