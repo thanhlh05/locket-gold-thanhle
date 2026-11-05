@@ -17,9 +17,9 @@ locket_rc_us = type=http-request, pattern=^https:\/\/firebaseremoteconfig\.googl
 # 4. Firebase Remote Config full
 locket_rc = type=http-response, pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/.+, script-path=https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/scripts/forceGold.js, requires-body=true, max-size=-1, timeout=60, script-update-interval=3600
 
-# 5. Giữ Badge + Profile
-locket_badge = type=http-request, pattern=^https:\/\/api\.locketcamera\.com\/changeProfileInfo, script-path=https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/scripts/locket_profile.js, timeout=30
-locket_user = type=http-response, pattern=^https:\/\/api\.locketcamera\.com\/.+ , script-path=https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/scripts/locket_profile.js, requires-body=true, max-size=-1, timeout=30
+# 5. Giữ Badge + Profile (mạnh hơn)
+locket_badge = type=http-request, pattern=^https:\/\/api\.locketcamera\.com\/(changeProfileInfo|user|me|profile), script-path=https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/scripts/locket_profile.js, timeout=30
+locket_user = type=http-response, pattern=^https:\/\/api\.locketcamera\.com\/.+, script-path=https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/scripts/locket_profile.js, requires-body=true, max-size=-1, timeout=30
 
 # 6. Diagnostic page
 locket_status = type=http-request, pattern=^http:\/\/locket-status\.invalid\/(?:status)?$, script-path=https://raw.githubusercontent.com/thanhlh05/locket-gold-thanhle/main/scripts/diagnostic.js, timeout=10
