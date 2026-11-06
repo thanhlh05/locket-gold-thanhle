@@ -41,9 +41,10 @@ if (ua.includes("Locket")) {
             onboarding: false,
             after_sent_moment: false,
             on_foreground: false,
-            interval: 2592000,
-            profile_banner: true
+            interval: 999999999,
+            profile_banner: false
         }),
+        android_subscribe_gold_button_enabled: "false",
         feature_discovery_popup_config: JSON.stringify({
             tag: "LOCKET GOLD",
             tag_gradient: true,
@@ -96,7 +97,7 @@ if (ua.includes("Locket")) {
     });
 
     // ============================================================
-    // 3. CAMERA, VIDEO, FILTERS & UPLOAD QUALITY
+    // 3. CAMERA, VIDEO, FILTERS & UPLOAD QUALITY (đã tối ưu 60s + mic, tắt filter)
     // ============================================================
     Object.assign(obj.entries, {
         camera: JSON.stringify({
@@ -135,28 +136,14 @@ if (ua.includes("Locket")) {
             catch_up: true,
             widget_looping_mode: "never"
         }),
+        // Tắt hoàn toàn nút filter
         camera_filter_config: JSON.stringify({
             allows_custom_filters: false,
             show_filter_button: false,
-            sheet_enabled: true,
-            open_sheet_immediately: true,
-            sheet_filters: [
-                { title: { en: "Goofy" }, filter_ids: ["okay_wig", "influencer", "looks_maxxing", "toothless", "bye_brows"] },
-                { title: { en: "Looks" }, filter_ids: ["bowling_ball", "blonde_bleached", "beard", "bob_cut", "buns", "tatted", "mohawk", "braces", "bye_brows"] },
-                { title: { en: "Celebrate" }, filter_ids: ["slimed", "princess", "disco_lights", "cash_money", "happy_birthday"] },
-                { title: { en: "Cute" }, filter_ids: ["cutesy", "sticker_face", "flower_crown", "love_bug"] },
-                { title: { en: "Costumes" }, filter_ids: ["wedding", "cowboy_cowgirl", "giraffe", "clown"] },
-                { title: { en: "Holidays" }, filter_ids: ["easter_bunney_cutout", "easter_chick_cutout", "bearded", "leprechaun", "lucky_face", "sweet_hearts", "elf_cutout", "santa_cutout", "frosty"] }
-            ],
-            picker_filters: [
-                "okay_wig", "influencer", "looks_maxxing", "toothless", "bye_brows",
-                "bowling_ball", "blonde_bleached", "beard", "bob_cut", "buns",
-                "tatted", "mohawk", "braces", "slimed", "princess",
-                "disco_lights", "cash_money", "happy_birthday", "cutesy", "sticker_face",
-                "flower_crown", "love_bug", "wedding", "cowboy_cowgirl", "giraffe",
-                "clown", "easter_bunney_cutout", "easter_chick_cutout", "bearded", "leprechaun",
-                "lucky_face", "sweet_hearts", "elf_cutout", "santa_cutout", "frosty"
-            ]
+            sheet_enabled: false,
+            open_sheet_immediately: false,
+            sheet_filters: [],
+            picker_filters: []
         }),
         camera_roll_preview_enabled: "true",
         camera_roll_video_enabled: "true",
